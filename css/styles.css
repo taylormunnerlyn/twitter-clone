@@ -129,6 +129,7 @@ body {
 	}
 		#tweet-controls {
 			text-align: right;
+			display: none;
 		}
 			#tweet-controls div {
 				display: inline-block;
@@ -168,6 +169,7 @@ body {
 
 	.tweet-actions {
 		text-align: right;
+		background: lightgray;
 	}
 		.tweet-actions ul {
 			list-style-type: none;
@@ -258,5 +260,3 @@ body {
 				top: 0;
 				left: 0;
 			}
-
-
