@@ -89,7 +89,13 @@ $(document).ready(function() {
 
 
   $('.tweet').mouseenter(function() {
-    $('.tweet-actions').show();
+    $(this).find('.tweet-actions').slideDown('medium');
   });
+
+  $('.tweet').mouseleave(function() {
+    $(this).find('.tweet-actions').slideUp('medium');
+  });
+
+
 
 });
