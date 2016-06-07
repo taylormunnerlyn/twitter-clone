@@ -2,6 +2,13 @@ $(document).ready(function() {
 
   $('.tweet-actions').hide();
 
+  $('.stats').hide();
+
+  $('.reply').hide();
+
+  var retweetClick = 0;
+
+
   $('#compose-tweet').on('click', function(e) {
     e.stopPropagation();
     $(this).css('height', '5em');
@@ -41,6 +48,7 @@ $(document).ready(function() {
     var tweetText = $('#compose-tweet').val();
 
     if (newCount2 > 0) {
+
       $('#stream').prepend(
         '<div class="tweet">' +
           '<div class="content">' +
@@ -49,7 +57,7 @@ $(document).ready(function() {
             '<span class="username">@whicksmack</span>' +
             '<p class="tweet-text">' + tweetText + '</p>' +
             '<div class="tweet-actions">' +
-              '<ul>' +
+              '<ul id ="personalTweet">' +
                 '<li><span class="icon action-reply"></span> Reply</li>' +
                 '<li><span class="icon action-retweet"></span> Retweet</li>' +
                 '<li><span class="icon action-favorite"></span> Favorite</li>' +
@@ -58,7 +66,7 @@ $(document).ready(function() {
             '</div>' +
             '<div class="stats">' +
               '<div class="retweets">' +
-                '<p class="num-retweets">30</p>' +
+                '<p class="num-retweets">0</p>' +
                 '<p>RETWEETS</p>' +
               '</div>' +
               '<div class="favorites">' +
@@ -71,8 +79,7 @@ $(document).ready(function() {
                   '<img src="img/damenleeturks.jpg" />' +
                 '</div>' +
               '</div>' +
-              '<div class="time">' +
-                '1:04 PM - 19 Sep 13' +
+              '<div class="time">' + new Date() +
               '</div>' +
             '</div>' +
             '<div class="reply">' +
@@ -83,19 +90,48 @@ $(document).ready(function() {
         '</div>');
         $('#compose-tweet').val('');
       }
+      $('.reply').hide();
+      $('.stats').hide();
+      $('.tweet-actions').hide();
 
 
   });
 
+  //this causes the tweet-actions, stats, and reply's to stay hiden until hover or click.
+    $('body').on({
+     mouseenter: function() {
+       $(this).find('.tweet-actions').slideDown();
+     },
+     mouseleave: function() {
+       $('.tweet-actions').slideUp();
+     }
+    }, '.content');
 
-  $('.tweet').mouseenter(function() {
-    $(this).find('.tweet-actions').slideDown('medium');
-  });
+   $('body').on({
+     click: function() {
+       $(this).find('.stats').slideDown();
+     },
+     mouseleave: function() {
+       $('.stats').slideUp();
+     }
+    }, '.content');
 
-  $('.tweet').mouseleave(function() {
-    $(this).find('.tweet-actions').slideUp('medium');
-  });
+    $('body').on({
+      click: function() {
+        $(this).find('.reply').slideDown();
+      },
+      mouseleave: function() {
+        $('.reply').slideUp();
+      }
+    }, '.content');
 
+
+    $('#retweetIcon').on('click', function() {
+      $('.num-retweets').html(++retweetClick);
+    });
+
+    // $('#retweetIcon').on('click', function() {
+    //   $('.num-retweets').html(++retweetClick);
 
 
 });
